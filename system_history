@@ -1,0 +1,13 @@
+import win32gui, datetime, time
+w = win32gui
+next_window = w.GetWindowText(w.GetForegroundWindow())
+start_time = datetime.datetime.now().time()
+end_time = 0
+while True:
+    active_window = w.GetWindowText(w.GetForegroundWindow())
+    if active_window != next_window:
+        end_time = datetime.datetime.now().time()
+        print(next_window, "-----", start_time, "------", end_time)
+        next_window = active_window
+        start_time = end_time
+    time.sleep(10)
